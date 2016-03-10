@@ -31,6 +31,9 @@ class API extends Controller
 
 		// Use the plain API (returns ONLY up to 1000 of your objects).
 		$result = $s3->listObjects(array('Bucket' => $bucket));
+		if($name == "Sunnyside"){
+			$name = "S";
+		}
 		foreach ($result['Contents'] as $object) {
 			if(preg_match("*".$name."*", $object['Key'])){
 				$found = $object['Key'];
