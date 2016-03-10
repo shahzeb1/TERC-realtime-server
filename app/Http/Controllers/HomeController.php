@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Cookie;
+use Crypt;
 
 class HomeController extends Controller
 {
