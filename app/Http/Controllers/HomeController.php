@@ -16,11 +16,6 @@ class HomeController extends Controller
      * @return view 
      */
     public function showHome(){
-        $raw = Cookie::get('email');
-        if($raw != ""){
-            return redirect()->intended('/dashboard');
-        }
-        $user = Crypt::decrypt($raw);
         return view('home.home');
     }
 
