@@ -20,7 +20,7 @@ class Realtime extends Controller
     	}
     	$user = Crypt::decrypt($raw);
 
-    	$list = ['C_Rock', 'Rubicon', 'Sunnyside', 'TDR1', 'TDR1', 'T_Vista', 'USCG'];
+    	$list = ['C_Rock', 'Rubicon', 'Sunnyside', 'TDR1', 'TDR2', 'T_Vista', 'USCG'];
     	$key = md5($user);
     	return view('realtime.apiView', ['key'=>$key, 'name'=>$name, 'lists' => $list]);
 
@@ -34,7 +34,7 @@ class Realtime extends Controller
     	}
     	$user = Crypt::decrypt($raw);
 
-		$list = ['C_Rock', 'Rubicon', 'Sunnyside', 'TDR1', 'TDR1', 'T_Vista', 'USCG'];
+		$list = ['C_Rock', 'Rubicon', 'Sunnyside', 'TDR1', 'TDR2', 'T_Vista', 'USCG'];
     	return view('realtime.realtime', ['lists' => $list]);
     }
 }
