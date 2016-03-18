@@ -30,7 +30,7 @@ Route::group(['as' => 'docs::'], function () {
 /**
  * API routes:
  */
-Route::group(['as' => 'api::'], function () {
+Route::group(['as' => 'api::', 'middleware' => 'cors'], function () {
     Route::get('/api/v1/realtime/{name}', 'API@showRealtime')->name('realtimeAPI');
     Route::get('/api/v1/historic/{name}', 'API@showHistoric')->name('historicAPI');
 });

@@ -16,7 +16,7 @@
       <textarea rows="1" class="form-control" onclick="this.focus();this.select()" readonly="readonly">{{$key}}</textarea>
     </div>
       <div class="panel panel-default">
-        <div class="panel-heading"><h5><span class="label label-info">GET</span> /api/v1/realtime/{{$name}}</h5></div>
+        <div class="panel-heading"><h5><span class="label label-info">GET</span> /api/v1/historic/{{$name}}</h5></div>
         <table class="table">
           <thead>
             <tr>
@@ -60,7 +60,7 @@
           </tbody>
         </table>
       </div>
-      <center><a href="{{url('/api/v1/historic/'.$name.'?key='.$key.'&format=json')}}" class="btn btn-info btn-block" target="_blank">Test it out.</a></center>
+      <center><a href="{{url('/api/v1/historic/'.$name.'?key='.$key.'&format=json&start=2010-09-10')}}" class="btn btn-info btn-block" target="_blank">Test it out.</a></center>
     </div>
 </div>
 </div>

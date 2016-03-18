@@ -21,6 +21,8 @@ class RedirectIfAuthenticated
             return redirect('/');
         }
 
+        echo "hi";
+
         return $next($request);
     }
 }
