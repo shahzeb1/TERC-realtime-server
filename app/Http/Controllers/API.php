@@ -13,6 +13,12 @@ use DB;
 
 class API extends Controller
 {
+	/**
+	 * Show Historic data API
+	 * @param  [type]  $name    [description]
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
 	public function showHistoric($name, Request $request){
 		$key = $request->input('key');
 		$format = $request->input('format');
@@ -23,15 +29,30 @@ class API extends Controller
 		$endDay = date("z", strtotime($end));
 		$startYear = date("Y", strtotime($start));
 		$endYear = date("Y", strtotime($end));
+
+		// Check if start is set
+		if($start == null){
+			return response()->json(["error" => "The start parameter is missing."]);
+		}
+
+		// Error if startYear and endYear aren't the same
+		if($end != null && $startYear != $endYear){
+			return response()->json(["error" => "Currently, only query's within the same year are supported."]);
+		}
 		
 		if($end == null){
 			$results = DB::select('select * from '.$name.' where year = :year and day = :day', ['year' => $startYear, 'day' => $startDay]);
 		}else{
-			$results = DB::select('select * from '.$name.' where year between :yearA and :yearB', ['yearA' => $startYear, 'day' => $startDay]);
+			$results = DB::select('select * from '.$name.' where year = :yearA AND day between :dayA and :dayB', ['yearA' => $startYear, 'dayA' => $startDay, 'dayB' => $endDay]);
 		}
 		return response()->json($results);
 	}
-
+	/**
+	 * Show Realtime data
+	 * @param  [type]  $name    [description]
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
 	public function showRealtime($name, Request $request){
 		$key = $request->input('key');
 		$format = $request->input('format');

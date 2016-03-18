@@ -15,7 +15,8 @@ class HomeController extends Controller
      * Shows the homepage for not-logged in users
      * @return view 
      */
-    public function showHome(){
+    public function showHome(Request $request){
+        echo $request->error;
         return view('home.home');
     }
 

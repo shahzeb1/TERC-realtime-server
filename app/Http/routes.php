@@ -15,12 +15,12 @@ Route::group(['middleware' => ['web']], function () {
 /**
  * Show these routes when user is logged in:
  */
-Route::group(['as' => 'dash::'], function () {
+Route::group(['as' => 'dash::', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', 'DashController@showDash')->name('dashboard');
     Route::get('/settings', 'DashController@showSettings')->name('settings');
 });
 
-Route::group(['as' => 'docs::'], function () {
+Route::group(['as' => 'docs::', 'middleware' => 'auth'], function () {
     Route::get('/realtime', 'Realtime@showRealtime')->name('realtime');
     Route::get('/realtime/{name}', 'Realtime@showRealtimeFor')->name('showRealtime');
     Route::get('/historic', 'Historic@showOptions')->name('historic');

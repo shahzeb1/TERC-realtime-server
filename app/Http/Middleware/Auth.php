@@ -3,8 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Cookie;
+use Crypt;
 
-class Cors
+class Auth
 {
     /**
      * Handle an incoming request.
@@ -15,11 +17,10 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        if($request->input('key') == null){
-            return response()->json(["error" => "API key not authorized."]);
+        $raw = Cookie::get('email');
+        if($raw == ""){
+            return redirect()->to('/')->withErrors('error', 'Please sign in.');;
         }
-        return $next($request)
-            ->header('Access-Control-Allow-Origin', '*')
-            ->header('Access-Control-Allow-Methods', 'GET');
+        return $next($request);
     }
 }

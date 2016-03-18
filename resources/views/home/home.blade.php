@@ -23,6 +23,7 @@
   				<input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
   				<div class="row">
   					<div class="col-md-6">
+              {{$errors->first()}}
   						<input type="email" name="email" class="form-control" placeholder="Email">
   					</div>
   					<div class="col-md-3">
