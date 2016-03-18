@@ -15,12 +15,7 @@ class DashController extends Controller
 	 * @return [type] [description]
 	 */
     public function showDash(){
-    	$raw = Cookie::get('email');
-		if($raw == ""){
-    		return redirect()->intended('/');
-    	}
-    	$user = Crypt::decrypt($raw);
-    	
+        echo md5('kai@stamen.com ');
     	return view('dash.dash');
     }
 }

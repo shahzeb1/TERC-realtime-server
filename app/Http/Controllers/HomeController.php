@@ -16,7 +16,6 @@ class HomeController extends Controller
      * @return view 
      */
     public function showHome(Request $request){
-        echo $request->error;
         return view('home.home');
     }
 

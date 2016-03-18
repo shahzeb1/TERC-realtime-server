@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use DB;
 
 class Cors
 {
@@ -15,7 +16,12 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        if($request->input('key') == null){
+        $key = $request->input('key');
+        if($key == null){
+            return response()->json(["error" => "API key not authorized."]);
+        }
+        $one = DB::select("SELECT `email` FROM users WHERE `key` = '".$key."'");
+        if(!count($one)){
             return response()->json(["error" => "API key not authorized."]);
         }
         return $next($request)
