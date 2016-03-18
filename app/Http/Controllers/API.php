@@ -29,7 +29,7 @@ class API extends Controller
 		}else{
 			$results = DB::select('select * from '.$name.' where year between :yearA and :yearB', ['yearA' => $startYear, 'day' => $startDay]);
 		}
-		echo json_encode($results);
+		return response()->json($results);
 	}
 
 	public function showRealtime($name, Request $request){
