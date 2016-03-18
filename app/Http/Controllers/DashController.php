@@ -15,7 +15,6 @@ class DashController extends Controller
 	 * @return [type] [description]
 	 */
     public function showDash(){
-        echo md5('kai@stamen.com ');
     	return view('dash.dash');
     }
 }
