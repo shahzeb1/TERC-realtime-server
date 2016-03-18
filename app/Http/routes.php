@@ -23,8 +23,8 @@ Route::group(['as' => 'dash::'], function () {
 Route::group(['as' => 'docs::'], function () {
     Route::get('/realtime', 'Realtime@showRealtime')->name('realtime');
     Route::get('/realtime/{name}', 'Realtime@showRealtimeFor')->name('showRealtime');
-    Route::get('/historic', 'Historic@showRealtime')->name('historic');
-    Route::get('/historic/{name}', 'Historic@showRealtimeFor')->name('showHistoric');
+    Route::get('/historic', 'Historic@showOptions')->name('historic');
+    Route::get('/historic/{name}', 'Historic@showHistoricFor')->name('showHistoric');
 });
 
 /**
@@ -32,5 +32,5 @@ Route::group(['as' => 'docs::'], function () {
  */
 Route::group(['as' => 'api::'], function () {
     Route::get('/api/v1/realtime/{name}', 'API@showRealtime')->name('realtimeAPI');
-    Route::get('/api/v1/historic/{name}', 'API@showRealtime')->name('realtimeAPI');
+    Route::get('/api/v1/historic/{name}', 'API@showHistoric')->name('historicAPI');
 });

@@ -9,9 +9,29 @@ use Aws\S3\S3Client;
 use Cookie;
 use Crypt;
 use Input;
+use DB;
 
 class API extends Controller
 {
+	public function showHistoric($name, Request $request){
+		$key = $request->input('key');
+		$format = $request->input('format');
+		$start = $request->input('start');
+		$end = $request->input('end');
+
+		$startDay = date("z", strtotime($start));
+		$endDay = date("z", strtotime($end));
+		$startYear = date("Y", strtotime($start));
+		$endYear = date("Y", strtotime($end));
+		
+		if($end == null){
+			$results = DB::select('select * from '.$name.' where year = :year and day = :day', ['year' => $startYear, 'day' => $startDay]);
+		}else{
+			$results = DB::select('select * from '.$name.' where year between :yearA and :yearB', ['yearA' => $startYear, 'day' => $startDay]);
+		}
+		echo json_encode($results);
+	}
+
 	public function showRealtime($name, Request $request){
 		$key = $request->input('key');
 		$format = $request->input('format');
