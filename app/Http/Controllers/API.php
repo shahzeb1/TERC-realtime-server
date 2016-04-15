@@ -79,6 +79,8 @@ class API extends Controller
 			}
 
 			return response()->json($final);
+		}else{
+			return response()->json(['error' => $type.' is not a valid Parse table.']);
 		}
 	}
 
@@ -90,24 +92,32 @@ class API extends Controller
 	public function showParseUser(Request $request){
 		ParseClient::initialize(env('PARSE_1'), env('PARSE_2'), env('PARSE_3'));
 		$user_id = $request->input('user_id');
+
+		if(!isset($user_id)){
+			return response()->json(["error" => "Please make sure the user_id field is set."]);
+		}
 		
 		$query = ParseUser::query();
 		$query->equalTo("objectId", $user_id); 
 		$query->limit(1);
 		$results = $query->find();
 
-		$user = array(
-					"anon" => $results[0]->get('anon'),
-					"email" => $results[0]->get('email'),
-					"eyes" => $results[0]->get('eyes'),
-					"fbid" => $results[0]->get('fbid'),
-					"name" => $results[0]->get('name'),
-					"pipe" => $results[0]->get('pipe'),
-					"points" => $results[0]->get('points'),
-					"team" => $results[0]->get('team'),
-					"username" => $results[0]->get('username'));
+		if(count($results) != 0){
+			$user = array(
+						"anon" => $results[0]->get('anon'),
+						"email" => $results[0]->get('email'),
+						"eyes" => $results[0]->get('eyes'),
+						"fbid" => $results[0]->get('fbid'),
+						"name" => $results[0]->get('name'),
+						"pipe" => $results[0]->get('pipe'),
+						"points" => $results[0]->get('points'),
+						"team" => $results[0]->get('team'),
+						"username" => $results[0]->get('username'));
 
-		return response()->json($user);
+			return response()->json($user);
+		}else{
+			return response()->json(["error" => "No user found for ".$user_id]);
+		}
 
 	}
 
