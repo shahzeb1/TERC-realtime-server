@@ -69,6 +69,11 @@ class API extends Controller
 					$user_id = $user["\x00Parse\ParseObject\x00objectId"];
 					$data["User"] = $user_id;
 				}
+				if(array_key_exists('Image', $data)){
+					$img = (array)$data["Image"];
+					$img_url = $img["\x00Parse\ParseFile\x00url"];
+					$data["Image"] = $img_url;
+				}
 
 				$final[$i] = $data;
 			}
