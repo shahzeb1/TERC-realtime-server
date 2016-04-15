@@ -25,6 +25,8 @@ Route::group(['as' => 'docs::', 'middleware' => 'auth'], function () {
     Route::get('/realtime/{name}', 'Realtime@showRealtimeFor')->name('showRealtime');
     Route::get('/historic', 'Historic@showOptions')->name('historic');
     Route::get('/historic/{name}', 'Historic@showHistoricFor')->name('showHistoric');
+    Route::get('/app', 'App@showOptions')->name('app');
+    Route::get('/app/{name}', 'App@showApp')->name('showApp');
 });
 
 /**
@@ -33,4 +35,6 @@ Route::group(['as' => 'docs::', 'middleware' => 'auth'], function () {
 Route::group(['as' => 'api::', 'middleware' => 'cors'], function () {
     Route::get('/api/v1/realtime/{name}', 'API@showRealtime')->name('realtimeAPI');
     Route::get('/api/v1/historic/{name}', 'API@showHistoric')->name('historicAPI');
+    Route::get('/api/v1/app/users', 'API@showParseUser')->name('appAPIuser');
+    Route::get('/api/v1/app/{type}', 'API@showParseData')->name('appAPIdata');
 });

@@ -1,5 +1,5 @@
-@section('title', 'Realtime')
-@extends('realtime.master')
+@section('title', 'App API')
+@extends('docs.master')
 @section('content')
 <div class="row realtime-items">
   <div class="col-md-3">
@@ -16,7 +16,7 @@
       <textarea rows="1" class="form-control" onclick="this.focus();this.select()" readonly="readonly">{{$key}}</textarea>
     </div>
       <div class="panel panel-default">
-        <div class="panel-heading"><h5><span class="label label-info">GET</span> /api/v1/historic/{{$name}}</h5></div>
+        <div class="panel-heading"><h5><span class="label label-info">GET</span> /api/v1/app/{{$name}}</h5></div>
         <table class="table">
           <thead>
             <tr>
@@ -36,31 +36,15 @@
           </tbody>
           <tbody>
             <tr>
-              <td>No</td>
-              <td>format</td>
-              <td>[csv] [json]</td>
-              <td>Currently only supports JSON.</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
               <td>Yes</td>
-              <td>start</td>
-              <td>yyyy-mm-dd</td>
-              <td>Start data for data.</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr>
-              <td>No</td>
-              <td>end</td>
-              <td>yyyy-mm-dd</td>
-              <td>End date for data.</td>
+              <td>user_id</td>
+              <td>[User ID]</td>
+              <td>User ID needed for lookup.</td>
             </tr>
           </tbody>
         </table>
       </div>
-      <center><a href="{{url('/api/v1/historic/'.$name.'?key='.$key.'&format=json&start=2010-09-10')}}" class="btn btn-info btn-block" target="_blank">Test it out.</a></center>
+      <center><a href="{{url('/api/v1/app/'.$name.'?key='.$key.'&user_id=PH9KrhJ2LO')}}" class="btn btn-info btn-block" target="_blank">Test it out.</a></center>
     </div>
 </div>
 </div>

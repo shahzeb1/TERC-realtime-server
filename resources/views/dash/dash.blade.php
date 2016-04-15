@@ -37,6 +37,8 @@
               <ul class="dropdown-menu" role="menu">
                 <li><a href="/realtime">Realtime</a></li>
                 <li><a href="/historic">Historic</a></li>
+                <li><a href="/app">App</a></li>
+                <li><a href="#">NASA</a></li>
               </ul>
             </div>
           <h1>data.</h1>

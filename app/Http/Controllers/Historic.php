@@ -14,7 +14,7 @@ class Historic extends Controller
     	$raw = Cookie::get('email');
     	$user = Crypt::decrypt($raw);
     	$lists = ['c_rock', 'rubicon', 'sunny_side', 't_cove', 't_vista', 'tdr1', 'tdr2', 'usgs'];
-    	return view('realtime.options', ['lists' => $lists]);
+    	return view('docs.historicOptions', ['lists' => $lists]);
     }
 
     public function showHistoricFor($name){
@@ -22,6 +22,6 @@ class Historic extends Controller
     	$user = Crypt::decrypt($raw);
     	$key = md5($user);
     	$lists = ['c_rock', 'rubicon', 'sunny_side', 't_cove', 't_vista', 'tdr1', 'tdr2', 'usgs'];
-    	return view('realtime.historicAPIView', ['lists' => $lists, 'key' => $key, 'name' => $name]);
+    	return view('docs.historicAPIView', ['lists' => $lists, 'key' => $key, 'name' => $name]);
     }
 }

@@ -1,5 +1,5 @@
 @section('title', 'Realtime')
-@extends('realtime.master')
+@extends('docs.master')
 @section('content')
 <div class="row realtime-items">
   <div class="col-md-3">
