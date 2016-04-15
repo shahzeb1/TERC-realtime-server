@@ -57,6 +57,11 @@ class API extends Controller
 				$data = (array)$results[$i];
 				$data = $data["\x00*\x00serverData"];
 
+				$date = (array)$results[$i];
+				$date = (array)$date["\x00Parse\ParseObject\x00createdAt"];
+				$date = $date["date"];
+				$data["createdAt"] = $date;
+
 				if(array_key_exists('Location', $data)){
 					$geo = (array)$data["Location"];
 					$lat = $geo["\x00Parse\ParseGeoPoint\x00latitude"];
@@ -103,6 +108,10 @@ class API extends Controller
 		$results = $query->find();
 
 		if(count($results) != 0){
+			$date = (array)$results[0];
+			$date = (array)$date["\x00Parse\ParseObject\x00createdAt"];
+			$date = $date["date"];
+
 			$user = array(
 						"anon" => $results[0]->get('anon'),
 						"email" => $results[0]->get('email'),
@@ -112,7 +121,8 @@ class API extends Controller
 						"pipe" => $results[0]->get('pipe'),
 						"points" => $results[0]->get('points'),
 						"team" => $results[0]->get('team'),
-						"username" => $results[0]->get('username'));
+						"username" => $results[0]->get('username'),
+						"createdAt" => $date);
 
 			return response()->json($user);
 		}else{
