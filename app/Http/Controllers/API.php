@@ -178,40 +178,45 @@ class API extends Controller
 
     	// Instantiate the S3 client with your AWS credentials and desired AWS region
 		$s3 = new S3Client([
-			'version'     => 'latest',
-			'region'      => 'us-west-1',
-			'credentials' => [
-			'key'    => 'AKIAIN3B2CSQW6UEPITQ',
-			'secret' => '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'
-			]
+				'version'     => 'latest',
+				'region'      => 'us-west-1',
+				'credentials' => [
+				'key'    => 'AKIAIN3B2CSQW6UEPITQ',
+				'secret' => '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'
+				]
 			]);
 
 		// Instantiate the client.
-		$bucket = 'realtime-terc-data';						
+		$bucket = 'realtime-terc-data';	
 
-		// Use the plain API (returns ONLY up to 1000 of your objects).
-		$result = $s3->listObjects(array('Bucket' => $bucket));
-		if($name == "Sunnyside"){
-			$name = "S";
-		}
-		foreach ($result['Contents'] as $object) {
-			if(preg_match("*".$name."*", $object['Key'])){
-				$found = $object['Key'];
-				break;
+		try{
+			// Get the objects in the new/ folder
+			$objects = $s3->getIterator('ListObjects', array(
+				"Bucket" => $bucket,
+				"Prefix" => "new/"
+			));
+			// Loop through all the $objects
+			foreach ($objects as $object) {
+				// Correction for Sunnyside
+				if($name == "Sunnyside"){
+					$name = "S";
+				}
+			    // Stop search as soon as we've matched
+				if(preg_match("*".$name."*", $object['Key'])){
+					$found = $object['Key'];
+					break;
+				}
 			}
-		}
 
 		// Now display the content:
-		try {
-		    // Get the object
-			$result = $s3->getObject(array(
-				'Bucket' => $bucket,
-				'Key'    => $found
-			));
+		$result = $s3->getObject(array(
+			'Bucket' => $bucket,
+			'Key'    => $found
+		));
 
-		    // Display the object in the browser
-			header("Content-Type: text/plain");
-			echo $result['Body'];
+	    // Display the object in the browser
+		header("Content-Type: text/plain");
+		echo $result['Body'];
 		} catch (S3Exception $e) {
 			echo $e->getMessage() . "\n";
 		}
