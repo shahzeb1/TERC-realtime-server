@@ -3,6 +3,7 @@
 @section('content')
 <div class="row realtime-items">
   <div class="col-md-3">
+    Please note: Try and use an appropriate `limit` on your query just because it helps the database respond much more efficiently.
   </div>
   <div class="col-md-9">
     <div class="alert alert-info">
