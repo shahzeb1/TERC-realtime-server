@@ -32,5 +32,12 @@ class Historic extends Controller
         return view('docs.homewoodAPIView', ['key' => $key]);
     }
 
+    public function showNASA(){
+        $raw = Cookie::get('email');
+        $user = Crypt::decrypt($raw);
+        $key = md5($user);
+        return view('docs.nasaAPIView', ['key' => $key]);
+    }
+
 
 }

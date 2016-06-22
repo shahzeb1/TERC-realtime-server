@@ -29,6 +29,7 @@ Route::group(['as' => 'docs::', 'middleware' => 'auth'], function () {
     Route::get('/app', 'App@showOptions')->name('app');
     Route::get('/app/{name}', 'App@showApp')->name('showApp');
     Route::get('/homewood/', 'Historic@showHomewood')->name('showHomewood');
+    Route::get('/nasa/', 'Historic@showNASA')->name('showNASA');
 });
 
 /**
@@ -40,4 +41,5 @@ Route::group(['as' => 'api::', 'middleware' => 'cors'], function () {
     Route::get('/api/v1/app/users', 'API@showParseUser')->name('appAPIuser');
     Route::get('/api/v1/app/{type}', 'API@showParseData')->name('appAPIdata');
     Route::get('/api/v1/homewood/', 'API@showHomewood')->name('homewood');
+    Route::get('/api/v1/nasa/', 'API@showNASA')->name('nasa');
 });

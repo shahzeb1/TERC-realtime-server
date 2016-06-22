@@ -27,6 +27,42 @@ use Parse\ParseCloud;
 class API extends Controller
 {
 	/**
+	 * Show the data form the NASA db
+	 * @param  Request $request [description]
+	 * @return JSON           API response
+	 */
+	public function showNASA(Request $request){
+		$limit = $request->input('limit');
+		$start = $request->input('start');
+		$end = $request->input('end');
+		$tb = $request->input('tb');
+
+		// Check if start is set
+		if($start == null){
+			return response()->json(["error" => "The start parameter is missing."]);
+		}
+
+		// Check if tb is set
+		if($tb == null){
+			return response()->json(["error" => "Must provide a tb dataset (1-4)."]);
+		}
+
+		// Check if there is a limit
+		if($limit == null){
+			$limit = 100;
+		}
+
+		if($end != null){
+			$results = DB::select('select * from tb'.$tb.' where (date >= :start) AND (date <= :end) limit :limit', ['start' => $start, 'end' => $end, 'limit' => $limit]);
+		}else{
+			$results = DB::select('select * from tb'.$tb.' where date = :start limit :limit', ['start' => $start, 'limit' => $limit]);	
+		}
+
+		return response()->json($results);
+
+	}
+
+	/**
 	 * Show the Homewood data from the MS SQL DB
 	 * @param  Request $request [description]
 	 * @return [type]           [description]
@@ -36,6 +72,12 @@ class API extends Controller
 		$start = $request->input('start');
 		$end = $request->input('end');
 
+		// Check if start is set
+		if($start == null){
+			return response()->json(["error" => "The start parameter is missing."]);
+		}
+
+		// Otherwise go ahead with the IP query:
         $ch = curl_init(); 
         curl_setopt($ch, CURLOPT_URL, "http://52.9.252.205/data.php?start=".$start."&end=".$end."&limit=".$limit); 
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
