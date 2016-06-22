@@ -38,6 +38,7 @@
                 <li><a href="/realtime">Realtime</a></li>
                 <li><a href="/historic">Historic</a></li>
                 <li><a href="/app">App</a></li>
+                <li><a href="/homewood">Homewood</a></li>
                 <li><a href="#">NASA</a></li>
               </ul>
             </div>

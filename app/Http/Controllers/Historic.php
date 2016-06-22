@@ -24,4 +24,13 @@ class Historic extends Controller
     	$lists = ['c_rock', 'rubicon', 'sunny_side', 't_cove', 't_vista', 'tdr1', 'tdr2', 'usgs'];
     	return view('docs.historicAPIView', ['lists' => $lists, 'key' => $key, 'name' => $name]);
     }
+
+    public function showHomewood(){
+        $raw = Cookie::get('email');
+        $user = Crypt::decrypt($raw);
+        $key = md5($user);
+        return view('docs.homewoodAPIView', ['key' => $key]);
+    }
+
+
 }

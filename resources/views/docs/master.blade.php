@@ -19,10 +19,10 @@
   <body>
   	<div class="container">
       <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-10">
           <h3>Lake Data</h3>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-2">
           <div class="btn-group">
                   <a type="button" href="/dashboard" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
                   <a type="button" href="/logoutThisUser" class="btn btn-primary"><i class="glyphicon glyphicon-log-out"></i></a>

@@ -28,6 +28,7 @@ Route::group(['as' => 'docs::', 'middleware' => 'auth'], function () {
     Route::get('/historic/{name}', 'Historic@showHistoricFor')->name('showHistoric');
     Route::get('/app', 'App@showOptions')->name('app');
     Route::get('/app/{name}', 'App@showApp')->name('showApp');
+    Route::get('/homewood/', 'Historic@showHomewood')->name('showHomewood');
 });
 
 /**
