@@ -32,9 +32,17 @@ class API extends Controller
 	 * @return [type]           [description]
 	 */
 	public function showHomewood(Request $request){
-		// $test = DB::connection('mssql')->select("SELECT * FROM backup1 WHERE (date >= '2013-05-20 17:17:00.0000000') AND (date <= '2013-05-21 17:17:00.0000000')");
-		// return $test;
-		return phpinfo();
+		$limit = $request->input('limit');
+		$start = $request->input('start');
+		$end = $request->input('end');
+
+        $ch = curl_init(); 
+        curl_setopt($ch, CURLOPT_URL, "http://52.9.252.205/data.php?start=".$start."&end=".$end."&limit=".$limit); 
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
+        $output = curl_exec($ch); 
+        curl_close($ch);    
+
+		return $output;
 	}
 
 	/**

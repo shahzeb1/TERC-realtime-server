@@ -23,7 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('db.connector.mssql', \Illuminate\Database\Connectors\SqlServerConnector::class);
-        $this->app->bind('db.connection.mssql', \Miinto\Database\MsSqlConnection::class);
+        // 
     }
 }
