@@ -38,4 +38,5 @@ Route::group(['as' => 'api::', 'middleware' => 'cors'], function () {
     Route::get('/api/v1/historic/{name}', 'API@showHistoric')->name('historicAPI');
     Route::get('/api/v1/app/users', 'API@showParseUser')->name('appAPIuser');
     Route::get('/api/v1/app/{type}', 'API@showParseData')->name('appAPIdata');
+    Route::get('/api/v1/homewood/', 'API@showHomewood')->name('homewood');
 });

@@ -66,6 +66,16 @@ return [
             'engine' => null,
         ],
 
+        'mssql' => [
+            'driver'   => 'sqlsrv',
+            'host'     => env('MS_HOST'),
+            'username' => env('MS_USER'),
+            'password' => env('MS_PWORD'),
+            'database' => env('MS_DB'),
+            'prefix'   => '',
+            'charset' => env('DB_CHARSET', 'utf8'),
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', 'localhost'),

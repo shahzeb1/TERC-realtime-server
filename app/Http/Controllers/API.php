@@ -27,6 +27,17 @@ use Parse\ParseCloud;
 class API extends Controller
 {
 	/**
+	 * Show the Homewood data from the MS SQL DB
+	 * @param  Request $request [description]
+	 * @return [type]           [description]
+	 */
+	public function showHomewood(Request $request){
+		// $test = DB::connection('mssql')->select("SELECT * FROM backup1 WHERE (date >= '2013-05-20 17:17:00.0000000') AND (date <= '2013-05-21 17:17:00.0000000')");
+		// return $test;
+		return phpinfo();
+	}
+
+	/**
 	 * Shows parse data for any other table other than the users table
 	 * @param  [type]  $type    Algae / Beach / Species / Water
 	 * @param  Request $request [description]
@@ -181,13 +192,13 @@ class API extends Controller
 				'version'     => 'latest',
 				'region'      => 'us-west-1',
 				'credentials' => [
-				'key'    => 'AKIAIN3B2CSQW6UEPITQ',
-				'secret' => '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'
+				'key'    => env('S3_KEY'),
+				'secret' => env('S3_SECRET')
 				]
 			]);
 
 		// Instantiate the client.
-		$bucket = 'realtime-terc-data';	
+		$bucket = env('S3_BUCKET');	
 
 		try{
 			// Get the objects in the new/ folder
