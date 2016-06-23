@@ -12,7 +12,7 @@
       <textarea rows="1" class="form-control" onclick="this.focus();this.select()" readonly="readonly">{{$key}}</textarea>
     </div>
       <div class="panel panel-default">
-        <div class="panel-heading"><h5><span class="label label-info">GET</span> /api/v1/homewood/</h5></div>
+        <div class="panel-heading"><h5><span class="label label-info">GET</span> /api/v1/nasa/</h5></div>
         <table class="table">
           <thead>
             <tr>
