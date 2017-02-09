@@ -1,1 +1,1 @@
-# The Laravel app which powers [http://lakedata.ucdavis.edu](lakedata.ucdavis.edu)
+Used to power TERC's realtime data server. Built via [Laravel](https://laravel.com/).
